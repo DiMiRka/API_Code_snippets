@@ -27,7 +27,13 @@ async def lifespan(app: FastAPI) -> AsyncContextManager[None]:
         if queue_handler is not None:
             queue_handler.listener.stop()
 
-app = FastAPI(docs_url="/api/openapi", lifespan=lifespan)
+app = FastAPI(
+    lifespan=lifespan,
+    docs_url="/api/openapi"
+)
+
+
+app = FastAPI(docs_url="/api/openapi")
 
 app.include_router(api_router)
 
